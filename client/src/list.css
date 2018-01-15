@@ -1,0 +1,22 @@
+:local .table
+{
+	margin-left:35px;
+	margin-bottom: 35px; 
+	background-color: aliceblue;;
+	
+    padding: 5px;
+    border-collapse: collapse;
+    width:50%;
+    
+
+}
+:local .table tr
+{
+	
+    border-bottom: 1px dotted aqua;
+
+}
+:local .table td
+{
+padding: 5px;
+}

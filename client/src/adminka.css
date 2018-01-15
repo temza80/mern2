@@ -1,0 +1,33 @@
+:local(.input)
+{
+	position:relative;
+	float:left;
+	background-color: aliceblue;
+    border-color: aqua;
+	margin-left: 35px;
+    padding: 5px;
+    width:22%;
+
+}
+:local(.select)
+{
+	position:relative;
+	float:left;
+	padding: 5px;
+	background-color: aliceblue;
+    border-color: aqua;
+    width:22%;
+}
+:local(.button)
+{
+	position:relative;
+	float:left;
+	padding: 5px;
+	background-color: aliceblue;
+    border-color: aqua;
+    
+}
+:local .full
+{
+	width: calc(50%+50px);
+}
