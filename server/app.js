@@ -24,7 +24,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 require('./routes/cron').job;
 app.use('/api', index);
 app.use('/users', users);
+// add the path module
 
+// get reference to the client build directory
+const staticFiles = express.static(path.join(__dirname, '../client/build'))
+// pass the static files (react app) to the express app. 
+app.use(staticFiles)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
