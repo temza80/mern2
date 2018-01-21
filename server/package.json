@@ -31,6 +31,6 @@
   "scripts": {
     "build": "babel . --ignore node_modules,build --out-dir build",
     "start": "node ./bin/www",
-    "start:prod": "node bin/www"
+    "start:prod": "node ./bin/www"
   }
 }
