@@ -1,7 +1,7 @@
 var CronJob = require('cron').CronJob;
-var renew=require('./index').renew;
+var renew=require('./indexPostgres').renew;
 
-module.exports.job = new CronJob('00 00,42 * * * *', function() {
+module.exports.job = new CronJob('00 00,39 * * * *', function() {
 
    // console.log(new Date().getSeconds())
     renew();

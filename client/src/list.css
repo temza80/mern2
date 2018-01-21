@@ -3,12 +3,17 @@
 	margin-left:35px;
 	margin-bottom: 35px; 
 	background-color: aliceblue;;
-	
+	box-sizing: content-box;
     padding: 5px;
     border-collapse: collapse;
-    width:50%;
+    width:100%;
     
 
+}
+:local .table_wrap
+{	
+	box-sizing: content-box;
+	width:50%;
 }
 :local .table tr
 {
@@ -19,4 +24,9 @@
 :local .table td
 {
 padding: 5px;
+}
+:local .loading
+{
+	margin-left:25%;
+	visibility: hidden;
 }

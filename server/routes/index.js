@@ -6,8 +6,7 @@ var cities=require("./city.list.json")
 var countries=require("./countries.js")
 var request = require('request-promise');
 var Cities=require('./mongoose').citiesModel;
-//console.log(cities.filter(x => x.name === 'Brest'))
-/* GET home page. */
+
 var renew= function()
 {
 
@@ -16,7 +15,7 @@ var renew= function()
         console.log
         var requests = [];
     citis.forEach(function (_item, i, arr) {
-        requests.push(request("http://samples.openweathermap.org/data/2.5/weather?id=" + _item.id + "&appid=b6907d289e10d714a6e88b30761fae22"))
+        requests.push(request("http://api.openweathermap.org/data/2.5/weather?id=" + _item.cId + "&units=metric&appid=8d46bae5987203e7d1b4ee49408a9747"))
     })
     Promise.all(requests)
         .then(results =>
@@ -31,7 +30,7 @@ var renew= function()
             citis[i].cCountry = countries[item.sys.country],
             citis[i].lon = item.coord.lon,
             citis[i].lat = item.coord.lat,
-            citis[i].temp = item.main.temp+Date.now();
+            citis[i].temp = item.main.temp;
             citis[i].wind = [item.wind.speed,item.wind.deg];
             citis[i].weather = {main:item.weather[0].main, icon:item.weather[0].icon}
 
@@ -62,6 +61,14 @@ var r=cities.filter(x => { if(x.name === req.body.param && x.name!=='') return t
 
 router.post('/putInBase', function(req, res, next)
 {
+  
+  
+  Cities.find({cId:req.body.param}).then(result =>
+   {
+ 
+  if(result.length)res.json({resp:"exist"});
+  else
+  {
 
 
     var r=cities.filter(x => { if(x.id == req.body.param) return true} )
@@ -69,7 +76,7 @@ router.post('/putInBase', function(req, res, next)
     /* var comment = new Comment({author:author_id,author_name:author_name,post_id:post_id,title: teasy(title), post: teasy(post)});
     comment.save(function (err) {*/
   if(r.length) {
-      var reqStr = "http://samples.openweathermap.org/data/2.5/weather?id=" + req.body.param + "&appid=b6907d289e10d714a6e88b30761fae22"
+      var reqStr = "http://api.openweathermap.org/data/2.5/weather?id=" + req.body.param + "&units=metric&appid=8d46bae5987203e7d1b4ee49408a9747"
 
       request(reqStr).then(function (presponse) {
 var response=JSON.parse(presponse);
@@ -83,11 +90,12 @@ var response=JSON.parse(presponse);
               wind : [response.wind.speed, response.wind.deg],
               weather :{main:response.weather[0].main, icon:response.weather[0].icon}
           });
-          city.save().then(post => console.log(post)).catch(err => console.log(err));
+          city.save().then(post => res.json({resp:"ok"})).catch(err => console.log(err));
 
-      }).then(res.json("ok")).catch(err => {console.log(err)
-  })
-  }
+      }).catch(err => {console.log(err)})
+}
+}
+})
   })
 
 

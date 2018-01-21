@@ -3,6 +3,8 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
+	var test=require('./basaPostgres').test;
+	test();
   res.send('respond with a resource');
 });
 

@@ -4,6 +4,23 @@ import './App.css';
 import TestInput from "./adminka";
 import List from "./list";
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            postList: []
+        }
+
+    }
+        getAll()
+        {
+           fetch('/api/getall').
+            then(res => res.json()).
+            then(posts=> this.setState({postList:posts})).catch(err => console.log(err))
+        }
+         componentDidMount() {
+        this.getAll();
+       
+    }
   render() {
     return (
       <div className="App">
@@ -14,8 +31,8 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-          <List />
-          <TestInput />
+          <List postList={this.state.postList}/>
+          <TestInput renew={this.getAll.bind(this)} />
       </div>
     );
   }

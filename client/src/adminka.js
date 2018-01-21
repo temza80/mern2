@@ -2,13 +2,16 @@
 
 //CommentBox.js
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom'
 import styles from './adminka.css';
+
 
 class	TestSelect extends	Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedValue:''
+            selectedValue:'',
+            coords:[]
         }
         this.onChangeHandler = this.onChangeHandler.bind(this);
        this.onSendValue = this.onSendValue.bind(this);
@@ -19,10 +22,14 @@ class	TestSelect extends	Component {
     }
     onSendValue(e)
     {
-
+        var button=e.target;
+        button.disabled=true;
+       document.getElementById('loading_gif').style.visibility='visible';
+       
         let param;
         if(this.state.selectedValue==='') param=this.props.firstId;
         else param=this.state.selectedValue;
+        
         fetch('/api/putinbase', {
             method: 'POST',
             headers: {
@@ -34,6 +41,12 @@ class	TestSelect extends	Component {
 
             })
         })
+        .then( res => {button.disabled=false; 
+            document.getElementById('loading_gif').style.visibility='hidden'; return res.json()})
+
+        .then(res2 => { if(res2.resp==="exist") alert("The city is alredy added");
+        else if(res2.resp==="ok") this.props.renew();
+    })
     }
 
     render(){
@@ -80,7 +93,7 @@ class	TestInput extends	Component{
 
             })
         })
-            .then( res => {console.log(res); return res.json()})
+            .then( res => { return res.json()})
             .then(lil =>{ if(lil.answer!=="no") this.setState({ forSel:lil, firstId:lil[0].id})
             else this.setState({ forSel: [],  firstId:''})
 
@@ -95,6 +108,8 @@ class	TestInput extends	Component{
     }
     render(){
         return	(
+        
+
             <div className={styles.full}>
                 <input className={styles.input}
                    
@@ -102,8 +117,9 @@ class	TestInput extends	Component{
                     onChange={this.onChangeHandler}
                     placeholder='введите	значение' />
 
-                <TestSelect data={this.state.forSel} firstId={this.state.firstId} />
+                <TestSelect data={this.state.forSel} firstId={this.state.firstId} renew={this.props.renew}/>
             </div>
+       
         );
     }
 
