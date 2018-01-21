@@ -17,10 +17,7 @@ class App extends Component {
             then(res => res.json()).
             then(posts=> this.setState({postList:posts})).catch(err => console.log(err))
         }
-        componentWillMount()
-        {
-           fetch('/users');
-        }
+     
          componentDidMount() {
         
         this.getAll();
