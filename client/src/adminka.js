@@ -163,7 +163,7 @@ class	MainInput extends	Component{
                 <MyMapComponent
              isMarkerShown
              coords={this.state.coords}
-            googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKNVQdQfUF_impqXxX2KSwOxci3pdKNwc&v=3.exp&libraries=geometry,drawing,places"
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={<div style={{ height: `500px` }} />}
             mapElement={<div style={{ height: `100%` }} />}
