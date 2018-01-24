@@ -11,7 +11,7 @@ const cn = {
 };
 
 
-const db = pgp(cn);//process.env.DATABASE_URL)
+const db = pgp(process.env.DATABASE_URL);//process.env.DATABASE_URL)
 
  module.exports.test=function() {
  	//db.none('DROP TABLE cities');
