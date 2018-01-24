@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import styles from './list.css';
 class	List extends	Component {
-    constructor(props) {
-        super(props);
-        
-    }
     
+   
 
     render()
     {

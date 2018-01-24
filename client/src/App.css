@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+
 }
 
 .App-logo {
@@ -20,6 +21,11 @@
 
 .App-intro {
   font-size: large;
+}
+.google_map
+{
+  position: relative;
+  float:right;
 }
 
 @keyframes App-logo-spin {

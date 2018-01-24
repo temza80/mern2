@@ -1,6 +1,6 @@
 :local .table
 {
-	margin-left:35px;
+	
 	margin-bottom: 35px; 
 	background-color: aliceblue;;
 	box-sizing: content-box;
@@ -14,6 +14,10 @@
 {	
 	box-sizing: content-box;
 	width:50%;
+	height:500px;
+	float:left;
+	overflow: scroll;
+
 }
 :local .table tr
 {

@@ -41,7 +41,8 @@ router.get('/getall', function(req, res, next)
 
 
 })
-router.post('/lil', function(req, res, next)
+
+router.post('/citylist', function(req, res, next)
 {
 var r=cities.filter(x => { if(x.name === req.body.param && x.name!=='') return true} )
     if(r.length){ console.log(r); res.json(r);}
